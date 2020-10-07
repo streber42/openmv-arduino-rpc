@@ -810,7 +810,7 @@ volatile size_t rpc_i2c_slave::__bytes_size = 0;
 void rpc_i2c_slave::onReceiveHandler(int numBytes)
 {
     if (!__bytes_size) return;
-    for (int i = 0, j = min(__bytes_size, numBytes); i < j; i++) __bytes_buff[i] = Wire.read();
+    for (int i = 0, j = min(__bytes_size, (uint32_t)numBytes); i < j; i++) __bytes_buff[i] = Wire.read();
     __bytes_buff += numBytes;
     __bytes_size -= numBytes;
 }
